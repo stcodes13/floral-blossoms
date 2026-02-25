@@ -4,7 +4,7 @@ let products = [];
 // Load products from JSON file
 async function loadProducts() {
     try {
-        const response = await fetch('data/products.json');
+        const response = await fetch(`data/products.json?v=${Date.now()}`);
         products = await response.json();
         displayProducts();
     } catch (error) {
