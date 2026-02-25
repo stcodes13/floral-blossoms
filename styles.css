@@ -18,7 +18,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
 /* Navigation */
 .navbar { position: fixed; top: 0; left: 0; right: 0; background: var(--primary-green); z-index: 1000; border-bottom: 1px solid var(--beige); }
 .nav-content { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 0; }
-.logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--text-light); }
+.logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--white); }
 .nav-links { display: flex; list-style: none; gap: 2.5rem; }
 .nav-links a { text-decoration: none; color: var(--white); font-size: 0.9rem; font-weight: 400; letter-spacing: 0.5px; transition: color 0.3s; }
 .nav-links a:hover { color: var(--text-light); }
