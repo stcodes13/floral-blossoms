@@ -16,7 +16,7 @@ h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
 .cursive { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; color: #c4a88a; }
 
 /* Navigation */
-.navbar { position: fixed; top: 0; left: 0; right: 0; background: var(--white); z-index: 1000; border-bottom: 1px solid var(--beige); }
+.navbar { position: fixed; top: 0; left: 0; right: 0; background: var(--primary-green); z-index: 1000; border-bottom: 1px solid var(--beige); }
 .nav-content { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 0; }
 .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--text-dark); }
 .nav-links { display: flex; list-style: none; gap: 2.5rem; }
