@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "The Poetry Haven",
+        "price": 599,
+        "image": "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=600&h=800&fit=crop"
+    },
+    {
+        "id": 2,
+        "title": "Classic Elegance",
+        "price": 899,
+        "image": "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=600&h=800&fit=crop"
+    },
+    {
+        "id": 3,
+        "title": "Snow Wildflower",
+        "price": 749,
+        "image": "https://images.unsplash.com/photo-1487070183336-b863922373d4?w=600&h=800&fit=crop"
+    },
+    {
+        "id": 4,
+        "title": "Sunset Garden",
+        "price": 649,
+        "image": "https://images.unsplash.com/photo-1597848212624-e530d1e6e1db?w=600&h=800&fit=crop"
+    },
+    {
+        "id": 5,
+        "title": "Soft Whisper",
+        "price": 999,
+        "image": "https://images.unsplash.com/photo-1589826004780-74e7dc4ff072?w=600&h=800&fit=crop"
+    },
+    {
+        "id": 6,
+        "title": "Garden Bliss",
+        "price": 799,
+        "image": "https://images.unsplash.com/photo-1615472164818-f94c1d93f7b3?w=600&h=800&fit=crop"
+    }
+]
