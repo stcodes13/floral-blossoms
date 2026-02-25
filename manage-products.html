@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products - Floral Blossom</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        .admin-container { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem; }
+        .admin-header { text-align: center; margin-bottom: 3rem; }
+        .admin-header h1 { font-size: 3rem; margin-bottom: 1rem; }
+        .admin-note { background: #fff3cd; padding: 1rem; border-left: 4px solid #ffc107; margin-bottom: 2rem; }
+        .admin-list { display: grid; gap: 1.5rem; }
+        .admin-product { background: var(--cream); padding: 1.5rem; display: grid; grid-template-columns: 120px 1fr auto; gap: 1.5rem; align-items: center; }
+        .admin-product-image { width: 120px; height: 120px; object-fit: cover; }
+        .admin-product-info h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .admin-product-price { font-size: 1.1rem; color: var(--primary-green); font-weight: 600; }
+        .btn-edit { background: var(--primary-green); color: white; padding: 0.7rem 1.5rem; border: none; cursor: pointer; }
+        .btn-delete { background: #d32f2f; color: white; padding: 0.7rem 1.5rem; border: none; cursor: pointer; margin-left: 0.5rem; }
+        .form-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; padding: 2rem; }
+        .form-modal.active { display: flex; }
+        .form-content { background: white; padding: 2rem; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; }
+        .form-field { margin-bottom: 1.5rem; }
+        .form-field label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+        .form-field input { width: 100%; padding: 0.9rem; border: 1px solid var(--beige); }
+        .form-buttons { display: flex; gap: 1rem; margin-top: 1rem; }
+        .form-buttons button { flex: 1; padding: 1rem; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">Floral Blossom</div>
+                <a href="index.html" style="text-decoration: none; color: var(--text-dark);">← Back to Store</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Manage Products</h1>
+            <p style="color: var(--text-light);">Edit products in data/products.json file</p>
+        </div>
+
+        <div class="admin-note">
+            <strong>How to manage products:</strong><br>
+            1. Edit the <code>data/products.json</code> file directly<br>
+            2. Commit and push changes to GitHub<br>
+            3. Products update automatically on the site
+        </div>
+
+        <div class="admin-list" id="productsList">
+            <div class="loading">Loading products...</div>
+        </div>
+    </div>
+
+    <div class="form-modal" id="productFormModal">
+        <div class="form-content">
+            <h2 id="formTitle">Edit Product Details</h2>
+            <div style="background: #e3f2fd; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid #2196f3;">
+                <small>Note: Copy these details and manually update data/products.json file</small>
+            </div>
+            <div class="form-field">
+                <label>ID</label>
+                <input type="text" id="productId" readonly>
+            </div>
+            <div class="form-field">
+                <label>Title</label>
+                <input type="text" id="productTitle" readonly>
+            </div>
+            <div class="form-field">
+                <label>Price (₹)</label>
+                <input type="number" id="productPrice" readonly>
+            </div>
+            <div class="form-field">
+                <label>Image URL</label>
+                <input type="url" id="productImage" readonly>
+            </div>
+            <button onclick="document.getElementById('productFormModal').classList.remove('active')" class="btn-primary" style="width: 100%;">Close</button>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        let products = [];
+
+        async function loadProducts() {
+            try {
+                const response = await fetch('data/products.json');
+                products = await response.json();
+                displayProducts();
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('productsList').innerHTML = '<p style="text-align: center; color: #d32f2f;">Error loading products</p>';
+            }
+        }
+
+        function displayProducts() {
+            const list = document.getElementById('productsList');
+            list.innerHTML = '';
+            
+            products.forEach(product => {
+                const div = document.createElement('div');
+                div.className = 'admin-product';
+                div.innerHTML = `
+                    <img src="${product.image}" class="admin-product-image">
+                    <div class="admin-product-info">
+                        <h3>${product.title}</h3>
+                        <div class="admin-product-price">₹${product.price}</div>
+                    </div>
+                    <button class="btn-edit" onclick="viewProduct(${product.id})">View Details</button>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        function viewProduct(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+            
+            document.getElementById('productId').value = product.id;
+            document.getElementById('productTitle').value = product.title;
+            document.getElementById('productPrice').value = product.price;
+            document.getElementById('productImage').value = product.image;
+            document.getElementById('productFormModal').classList.add('active');
+        }
+
+        loadProducts();
+    </script>
+</body>
+</html>
