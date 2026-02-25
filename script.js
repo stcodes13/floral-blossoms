@@ -4,7 +4,15 @@ let products = [];
 // Load products from JSON file
 async function loadProducts() {
     try {
-        const response = await fetch(`data/products.json?v=${Date.now()}`);
+        const timestamp = new Date().getTime();
+        const response = await fetch(`data/products.json?v=${timestamp}`, {
+            cache: 'no-store',
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+            }
+        });
         products = await response.json();
         displayProducts();
     } catch (error) {
