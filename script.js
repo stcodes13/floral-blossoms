@@ -1,7 +1,7 @@
 let cart = [];
 let products = [];
 
-// Load products from JSON file
+// Load products from JSON file with robust cache busting
 async function loadProducts() {
     try {
         const timestamp = new Date().getTime();
